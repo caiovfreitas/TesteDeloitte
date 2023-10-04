@@ -1,6 +1,6 @@
 import { PostService } from './../post-service.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-detail',
@@ -12,7 +12,8 @@ export class PostDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -23,5 +24,9 @@ export class PostDetailComponent implements OnInit {
         this.post = post;
       });
     }
+  }
+
+  back() {
+    this.router.navigate(['']);
   }
 }

@@ -12,6 +12,9 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, PostListComponent, PostDetailComponent],
@@ -22,6 +25,9 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatPaginatorModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],

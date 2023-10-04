@@ -1,8 +1,12 @@
-<div *ngIf="post">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.body }}</p>
-  </div>
-  <div *ngIf="!post">
-    <p>Post não encontrado.</p>
-  </div>
-  
+<div class="body">
+    <button class="button" mat-button (click)="back()">
+        <mat-icon>arrow_back</mat-icon> Voltar
+      </button>
+    <div *ngIf="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
+    </div>
+    <div *ngIf="!post">
+        <p>Post não encontrado.</p>
+    </div>
+</div>

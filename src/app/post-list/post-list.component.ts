@@ -19,9 +19,7 @@ export class PostListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   searchControl = new FormControl();
 
-  constructor(private postService: PostService, private router: Router) {
-    this.paginator = {} as MatPaginator;
-  }
+  constructor(private postService: PostService, private router: Router) {}
 
   ngOnInit(): void {
     this._getPosts();
@@ -41,21 +39,27 @@ export class PostListComponent implements OnInit {
     this.router.navigate(['/post', postId]);
   }
 
+  clearSearch() {
+    this.searchControl.setValue('');
+    this.searchPosts();
+  }
+
   _getPosts() {
     this.postService.getPosts().subscribe((posts) => {
       this.posts = posts;
-
+      this.totalItems = this.posts.length;
       this.applyPagination();
     });
   }
 
   searchPosts() {
     const searchTerm = this.searchControl.value.toLowerCase().trim();
-    this.postView = this.posts.filter((post) =>
+    const filteredPosts = this.posts.filter((post) =>
       post.title.toLowerCase().includes(searchTerm)
     );
+    this.postView = filteredPosts.slice(0, this.pageSize);
     this.noResultsFound = this.postView.length === 0;
-    this.totalItems = this.postView.length;
+    this.totalItems = filteredPosts.length;
     this.paginator.firstPage();
   }
 
@@ -63,9 +67,6 @@ export class PostListComponent implements OnInit {
     const pageIndex = this.paginator.pageIndex;
     const pageSize = this.paginator.pageSize;
     const startIndex = pageIndex * pageSize;
-
-    this.totalItems = this.posts.length;
-    console.log(this.totalItems);
 
     this.postView = this.posts.slice(startIndex, startIndex + pageSize);
   }
