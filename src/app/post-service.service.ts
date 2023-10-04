@@ -18,9 +18,4 @@ export class PostService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<any>(url);
   }
-
-  searchByTitle(title: string): Observable<any[]> {
-    const params = { title };
-    return this.http.get<any[]>(this.apiUrl, { params });
-  }
 }
